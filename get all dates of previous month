@@ -1,0 +1,6 @@
+SELECT the_date FROM 
+(
+SELECT ADD_MONTHS(DATE_TRUNC('MONTH', SYSDATE), -1) + (ROW_NUMBER() OVER () - 1) the_date 
+FROM tables
+) foo 
+WHERE the_date < DATE_TRUNC('MONTH', SYSDATE);
